@@ -1,0 +1,76 @@
+@using System.Globalization
+@using CitationSystem.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IReadOnlyList<BibliographyEntry>>
+
+@* The default bibliography rending displaying the page's cited citatoin in numeric order.
+   A custom page at Views/Partials/GisCitationSystem/Bibliography.cshtml overrides this one
+*@
+
+@{
+    if (Model.Count == 0) { return; }
+    var accessedDateLabel = Umbraco.GetDictionaryValueOrDefault(CitationSystem.Constants.AccessedDateLabelDictionaryKey, "Retrieved");
+    var backlinkLabel = Umbraco.GetDictionaryValueOrDefault(CitationSystem.Constants.BacklinkLabelDictionaryKey, "Back to text");
+}
+
+<ol class="citationBibliography">
+    @foreach (var entry in Model)
+    {
+        var citation = entry.Citation;
+        var isValidURL = Uri.TryCreate(citation.Url, UriKind.Absolute, out var uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
+        var authors = string.Join("; ", citation.Authors?.Where(author => !string.IsNullOrWhiteSpace(author)) ?? []);
+        var publishedDate = citation.PublishedDate?.ToString(CitationDateFormat, CultureInfo.CurrentCulture);
+        var accessedDate = citation.AccessedDate?.ToString(CitationDateFormat, CultureInfo.CurrentCulture);
+        var textBeforeTitle = JoinFieldsWithPeriods([authors]);
+
+        var textAfterTitle = JoinFieldsWithPeriods(
+        [
+            citation.SourceName,
+            citation.Publisher,
+            publishedDate,
+            citation.Page,
+            citation.Note,
+            accessedDate is null ? null : $"{accessedDateLabel} {accessedDate}"
+        ]);
+
+        <li id="@entry.AnchorID" value="@entry.CitationNumber">
+            <span class="citationBacklinks">
+                @if (entry.MarkerAnchorIDs.Count == 1)
+                {
+                    <a href="#@entry.MarkerAnchorIDs[0]" aria-label="@backlinkLabel">&uarr;</a>
+                }
+                else
+                {
+                    <span aria-hidden="true">&uarr;</span>
+                    for (var i = 0; i < entry.MarkerAnchorIDs.Count; i++)
+                    {
+                        var backlinkLetters = GetBacklinkLetters(i);
+                        <a href="#@entry.MarkerAnchorIDs[i]" aria-label="@backlinkLabel @backlinkLetters">@backlinkLetters</a>
+                    }
+                }
+            </span>
+            @textBeforeTitle
+            <cite>@if (isValidURL) {<a href="@citation.Url">@citation.Title</a>} else {@citation.Title}</cite>@GetPeriodIfMissing(citation.Title)
+            @textAfterTitle
+        </li>
+    }
+</ol>
+
+@functions
+{
+    private const string CitationDateFormat = "MMMM d, yyyy";
+
+    // Joins citation fileds togther with a space in-between and adds a period to the end of fields that don't end with ".", "?", or "!". Empty fileds are skipped.
+    private static string JoinFieldsWithPeriods(IEnumerable<string?> fields)
+    => string.Join(" ", fields.OfType<string>().Where(field => !string.IsNullOrWhiteSpace(field)).Select(field => field + GetPeriodIfMissing(field)));
+
+    // Adds a period to a field if it does not already end with a ".", "?", or "!"
+    private static string GetPeriodIfMissing(string field) => (field.EndsWith('.') || field.EndsWith('?') || field.EndsWith('!')) ? string.Empty : ".";
+
+    // Generate Backlink lettering. a to z (1-26 index), then aa, ab, etc (27+ index)
+    private static string GetBacklinkLetters(int filedIndex)
+    {
+        var letters = string.Empty;
+        for (var i = filedIndex; i >= 0; i = (i / 26) - 1) { letters = (char)('a' + (i % 26)) + letters; }
+        return letters;
+    }
+}

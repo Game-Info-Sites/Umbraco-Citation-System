@@ -1,0 +1,29 @@
+{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "AuthorDetails":
+  {
+    "Name": "Game Info Sites",
+    "ImageUrl": "https://github.com/Game-Info-Sites.png",
+    "Url": "https://www.gameinfosites.com/"
+  },
+  "Category": "Editor Tools",
+  "Description": "A Wiki style citation sytem that integrates into the TinyMCE Rich Text Editor plugin.",
+  "LicenseTypes":
+  [
+    "Free"
+  ],
+  "IssueTrackerUrl": "https://github.com/Game-Info-Sites/Umbraco-Citation-System/issues",
+  "PackageType": "Package",
+  "Tags":
+  [
+    "citations",
+    "footnotes",
+    "references",
+    "bibliography",
+    "wikipedia",
+    "tinymce",
+    "rich text editor",
+    "property editor"
+  ],
+  "Title": "Umbraco Citation System"
+}
