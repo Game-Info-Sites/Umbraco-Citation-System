@@ -1,0 +1,14 @@
+{
+  "id": "CitationSystem",
+  "name": "CitationSystem",
+  "version": "0.0.0",
+  "allowTelemetry": true,
+  "extensions": [
+    {
+      "name": "Citation System Bundle",
+      "alias": "CitationSystem.Bundle",
+      "type": "bundle",
+      "js": "/App_Plugins/CitationSystem/citation-system.js"
+    }
+  ]
+}

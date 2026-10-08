@@ -1,0 +1,14 @@
+{
+    "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json", 
+    "AuthorDetails": {
+      "Name": "Game Info Sites",
+      "ImageUrl": "https://github.com/Game-Info-Sites.png"
+    },
+    "Category": "",
+    "Description": "",
+    "LicenseTypes": [ "Free" ],
+    "IssueTrackerUrl": "https://github.com/Game-Info-Sites/Umbraco-Citation-System/issues",
+    "PackageType": "Package",
+    "Tags": [],
+    "Title": "Umbraco Wiki Citation System"
+  }
