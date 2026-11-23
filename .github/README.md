@@ -7,11 +7,6 @@
 The Umbraco Citation System provides a Wikipedia-style citation function to lets editors insert superscript links to be inserted into a Rich Text Editor (TinyMCE only for now) that link to selected citations in the bibliography.
 This plugin also generates the bibliography for easy integration and display into page templates.
 
-<!--
-
-And don't forget to add the screenshot files to umbraco-marketplace.json too!
--->
-
 ## Installation
 
 Add the package to an existing Umbraco website (v17+) from NuGet:
@@ -46,12 +41,16 @@ You can setup two translation dictionary items to add translations for the "Acce
 
 ## The Citation Manger
 
-The citation manger property is the bibliography for the document type and must be added to any document type that wants to use the citation system and, currently, the property alias is required to be set to "citationManager". From the manager you can search/filter for existing citations based on the title and source, add new citations, edit existing citations, and delete them. The citation manager acts as the master control of for all the citations in a page, even if multiple RTEs are used. If you delete a citation from the manager but leave it's citation in an RTE then a "\[?]" superscript notation will appear in place of a linked number when the page template is rendered. If the manager contains citations are there not used in any RTE then it will not be listed in the template's rendered bibliography.
+The citation manger property is the bibliography for the document type and must be added to any document type that wants to use the citation system and, currently, the property alias is required to be set to "citationManager". From the manager you can search/filter for existing citations based on the title and source, add new citations, edit existing citations, and delete them. The citation manager acts as the master control of for all the citations in a page, even if multiple RTEs are used. If you delete a citation from the manager but leave it's citation in an RTE then a "[?]" superscript notation will appear in place of a linked number when the page template is rendered. If the manager contains citations are there not used in any RTE then it will not be listed in the template's rendered bibliography.
 **NOTE:** Please make sure the Citation Manger Property is not set to "vary by culture", if "vary by culture" is enabled then each language gets it's own citation list and bibliography
+
+<img alt="Citation Manger with example test citation" src="https://github.com/Game-Info-Sites/Umbraco-Citation-System/blob/main/docs/screenshots/Citation-Manager-1.png">
 
 ## TinyMCE Toolbar Button.
 
 To enable the usage of citations within the TinyMCE Rich Text Editor edit the TinyMCE RTE data type you wish to use and place a checkmark for "Citation" in the "Toolbar" configuration options. Once enabled the RTE Property will have a new button with the word `Cite` as it's icon. Place the curser where you wish to insert the citation mark and click the "Cite" button. This will open a sidebar where you can view the existing citations, filter/search for citations based on there Title and the source, and add new citations. If you click on an existing citation it will insert a superscript value of `\[cite]` into the RTE. This will automatically be replaced with a numbered link that will jump to the selected citation in the bibliography when the page's template is rendered on the front end. If you need to add a new citation then clicking the "Add citation" button will bring up the new citation sidebar where you can add all the information for the citation and submit it. The new citation will automatically be added to the manger and inserted into the RTE.
+
+<img alt="TinyMCE Rich Text Editor with test text showing a citation marker" src="https://github.com/Game-Info-Sites/Umbraco-Citation-System/blob/main/docs/screenshots/TinyMCE-Citation-1.png">
 
 ## Known Limitations And Bugs
 
