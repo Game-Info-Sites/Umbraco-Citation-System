@@ -1,8 +1,8 @@
 # Umbraco Citation System
 
-[!\[Downloads](https://img.shields.io/nuget/dt/Umbraco.Community.CitationSystem?color=cc9900)](https://www.nuget.org/packages/Umbraco.Community.CitationSystem/)
-[!\[NuGet](https://img.shields.io/nuget/vpre/Umbraco.Community.CitationSystem?color=0273B3)](https://www.nuget.org/packages/Umbraco.Community.CitationSystem)
-[!\[GitHub license](https://img.shields.io/github/license/Game-Info-Sites/Umbraco-Citation-System?color=8AB803)](../LICENSE)
+[![Downloads](https://img.shields.io/nuget/dt/Umbraco.Community.CitationSystem?color=cc9900)](https://www.nuget.org/packages/Umbraco.Community.CitationSystem/)
+[![NuGet](https://img.shields.io/nuget/vpre/Umbraco.Community.CitationSystem?color=0273B3)](https://www.nuget.org/packages/Umbraco.Community.CitationSystem)
+[![GitHub license](https://img.shields.io/github/license/Game-Info-Sites/Umbraco-Citation-System?color=8AB803)](../LICENSE)
 
 The Umbraco Citation System provides a Wikipedia-style citation function to lets editors insert superscript links to be inserted into a Rich Text Editor (TinyMCE only for now) that link to selected citations in the bibliography.
 This plugin also generates the bibliography for easy integration and display into page templates.
@@ -79,4 +79,4 @@ Contributions to this package are most welcome! Please read the [Contributing Gu
 ## Support
 
 If you found this package helpful, consider supporting our team on <a href="https://ko-fi.com/gameinfosites">ko-fi</a>
-[!\[ko-fi](https://ko-fi.com/img/githubbutton\_sm.svg)](https://ko-fi.com/gameinfosites)
+<br /><br />[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/gameinfosites)
